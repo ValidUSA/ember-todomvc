@@ -1,0 +1,42 @@
+<header class="header">
+<h1>todos</h1>
+{{input
+  type="text"
+  class="new-todo"
+  placeholder="What needs to be done?"
+  value=newTitle
+  enter="createTodo"
+}}
+</header>
+
+<section class="main">
+  <ul class="todo-list">
+    {{#each model as |todo|}}
+    {{todo-item model=todo}}
+    {{/each}}
+  </ul>
+  {{input type="checkbox" class="toggle-all" checked=allAreDone}}
+</section>
+
+<footer class="footer">
+  <span class="todo-count">
+    <strong>{{remainingCount}}</strong> {{inflection}} left
+  </span>
+  <ul class="filters">
+    <li>
+      {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
+    </li>
+    <li>
+      {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+    </li>
+    <li>
+      {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
+    </li>
+  </ul>
+
+  {{#if hasCompleted}}
+  <button class="clear-completed" {{action "clearCompleted"}}>
+    Clear completed ({{completedCount}})
+  </button>
+  {{/if}}
+</footer>

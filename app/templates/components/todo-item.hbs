@@ -1,0 +1,6 @@
+{{#unless isEditing}}
+<input type="checkbox" checked={{model.isCompleted}} class="toggle" onclick={{action "save" value="target.checked"}}>
+<label {{action "editTodo" on="doubleClick"}}>{{model.title}}</label><button class="destroy" {{action "removeTodo"}}></button>
+{{else}}
+{{todo-edit value=model.title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+{{/unless}}
